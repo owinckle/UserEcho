@@ -1,0 +1,74 @@
+@use "../../styles/variables" as v;
+
+.app-shell {
+	display: flex;
+	height: 100vh;
+
+	@media (max-width: v.$breakpoint-laptop) {
+		position: fixed;
+		display: block;
+		left: v.$sidebar-sm-width + 30px;
+		width: calc(100vw - v.$sidebar-sm-width - 30px);
+	}
+
+	@media (max-width: v.$breakpoint-tablet) {
+		height: calc(100vh - v.$header-height);
+		width: 100vw;
+		left: 0;
+	}
+}
+
+.layout {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	padding: 25px;
+	max-width: calc(100vw - v.$sidebar-width - 30px);
+
+	&.layout--medium {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+
+	&.layout--small {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	.layout__header {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		margin-bottom: 15px;
+
+		.layout__title {
+			font-size: 1.5rem;
+			font-weight: 700;
+		}
+
+		.layout__subtitle {
+			color: v.$color-subtext;
+		}
+
+		.layout-nav {
+			display: flex;
+			gap: 15px;
+
+			.layout-nav__item {
+				cursor: pointer;
+				transition: color 0.2s ease-in-out;
+				color: v.$color-subtext;
+				font-weight: 500;
+
+				&:hover {
+					color: v.$color-text;
+				}
+
+				&.active {
+					color: v.$color-accent;
+				}
+			}
+		}
+	}
+}
