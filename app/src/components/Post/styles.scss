@@ -1,0 +1,148 @@
+@use "../../styles/variables" as v;
+
+.post-overlay {
+	position: fixed;
+	height: 100vh;
+	width: 100vw;
+	z-index: 99999;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+}
+
+.post {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background-color: v.$color-bg-secondary;
+	padding: 25px;
+	border-radius: v.$border-radius;
+	max-width: 1200px;
+	width: 100%;
+	z-index: 99999;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&__title {
+			font-weight: 600;
+			font-size: 1.5rem;
+		}
+
+		&__close {
+			font-size: 1.5rem;
+			cursor: pointer;
+			transition: color 0.2s ease-in-out;
+
+			&:hover {
+				color: v.$color-danger;
+			}
+		}
+	}
+
+	&__body {
+		padding-top: 15px;
+		display: flex;
+
+		&__content {
+			width: 60%;
+			border-right: 1px solid v.$color-border;
+			padding-right: 25px;
+
+			&__text {
+				color: v.$color-subtext;
+			}
+
+			&__labels {
+				padding-top: 10px;
+				display: flex;
+				gap: 10px;
+				flex-wrap: wrap;
+
+				&__label {
+					background-color: v.$color-accent;
+					padding: 5px 10px;
+					border-radius: v.$border-radius;
+					font-size: 0.9rem;
+				}
+			}
+
+			&__comment {
+				margin-top: 15px;
+				resize: none;
+			}
+
+			&__submit-comment {
+				width: fit-content;
+				margin-top: 5px;
+				position: relative;
+				margin-left: auto;
+			}
+
+			&__comments {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+
+				&__title {
+					font-size: 1.2rem;
+					font-weight: 600;
+					margin-bottom: -5px;
+				}
+
+				&__comment {
+					display: flex;
+					gap: 15px;
+
+					&__content {
+						width: 100%;
+						background-color: v.$color-bg-primary;
+						padding: 10px;
+						border-radius: v.$border-radius;
+					}
+
+					&__meta {
+						display: flex;
+						flex-direction: column;
+						gap: 5px;
+
+						&__author {
+							font-weight: 600;
+						}
+
+						&__date {
+							color: v.$color-subtext;
+						}
+					}
+				}
+			}
+		}
+
+		&__meta {
+			padding-left: 25px;
+			width: 40%;
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+
+			&__item {
+				align-items: center;
+				gap: 50px;
+				display: grid;
+				grid-template-columns: 1fr 6fr;
+
+				&__label {
+					color: v.$color-subtext;
+				}
+
+				&__value {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

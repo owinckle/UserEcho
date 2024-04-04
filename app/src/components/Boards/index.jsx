@@ -3,7 +3,7 @@ import { MdOutlineModeComment } from "react-icons/md";
 import { IoChevronDownOutline, IoChevronUpOutline } from "react-icons/io5";
 import Button from "../../components/Button";
 
-export const BoardList = ({ posts }) => {
+export const BoardList = ({ posts, viewPost }) => {
 	return (
 		<>
 			<div className="board-filter">
@@ -23,7 +23,11 @@ export const BoardList = ({ posts }) => {
 				)}
 
 				{posts.map((post, key) => (
-					<div key={key} className="board-list__post">
+					<div
+						key={key}
+						className="board-list__post"
+						onClick={() => viewPost(post)}
+					>
 						<div className="board-list__post__votes">
 							<IoChevronUpOutline className="board-list__post__votes__button" />
 							<div className="board-list__post__votes__count">

@@ -2,20 +2,18 @@
 <link rel="stylesheet" href="{% static 'pages/css/home.css' %}" />
 {% endblock %} {% block content %}
 <section class="hero fade-in-up">
-	<span class="hero__notice">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit.
-	</span>
-	<h2 class="hero__title">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit.
+	<span class="hero__notice"
+		>Your all-in-one product engagement platform</span
+	>
+	<h1 class="hero__title">Create products your users adore</h1>
+	<h2 class="hero__description">
+		Effortlessly gather feedback, prioritize features, and innovate with
+		confidence.
 	</h2>
-	<h1 class="hero__description">
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-		voluptatum.
-	</h1>
 
 	<div class="hero__ctas">
-		<a href="" class="button">Get Started</a>
-		<a href="" class="button reverse">Features</a>
+		<a href="" class="button">Start listening</a>
+		<a href="" class="button reverse">Demo</a>
 	</div>
 </section>
 
@@ -29,7 +27,7 @@
 	<div class="feature__list">
 		<div class="feature">
 			<div class="feature__text">
-				<h4 class="feature__name">Feature</h4>
+				<h4 class="feature__name">Feature Requests</h4>
 				<p class="feature__description">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 					Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur
@@ -45,7 +43,7 @@
 		</div>
 		<div class="feature">
 			<div class="feature__text">
-				<h4 class="feature__name">Feature</h4>
+				<h4 class="feature__name">Feedback</h4>
 				<p class="feature__description">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 					Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur
@@ -61,7 +59,7 @@
 		</div>
 		<div class="feature">
 			<div class="feature__text">
-				<h4 class="feature__name">Feature</h4>
+				<h4 class="feature__name">Bugs</h4>
 				<p class="feature__description">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 					Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur
@@ -77,7 +75,23 @@
 		</div>
 		<div class="feature">
 			<div class="feature__text">
-				<h4 class="feature__name">Feature</h4>
+				<h4 class="feature__name">Roadmap</h4>
+				<p class="feature__description">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur
+					adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor
+					sit amet consectetur adipisicing elit. Quisquam, voluptatum.
+				</p>
+			</div>
+			<img
+				src="https://via.placeholder.com/300"
+				alt="Feature image"
+				class="feature__image"
+			/>
+		</div>
+		<div class="feature">
+			<div class="feature__text">
+				<h4 class="feature__name">Changelog</h4>
 				<p class="feature__description">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 					Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur
@@ -123,40 +137,6 @@
 			<a href="" class="button">Get started</a>
 		</div>
 		{% endfor %}
-	</div>
-</section>
-
-<section class="faq fade-in-up" id="faq">
-	<h2 class="faq__title">Frequently Asked Questions</h2>
-	<p class="faq__description">
-		Here are some of our most frequently asked questions. If you have other
-		questions, please feel free to contact us.
-	</p>
-
-	<div class="faq__container">
-		<div class="faq__item" onclick="this.classList.toggle('opened');">
-			<h2 class="faq__question">What is Nox?</h2>
-			<p class="faq__answer">
-				Nox is a Django & React boilerplate that helps you build
-				production-ready web applications quickly.
-			</p>
-		</div>
-
-		<div class="faq__item" onclick="this.classList.toggle('opened');">
-			<h2 class="faq__question">What is Nox?</h2>
-			<p class="faq__answer">
-				Nox is a Django & React boilerplate that helps you build
-				production-ready web applications quickly.
-			</p>
-		</div>
-
-		<div class="faq__item" onclick="this.classList.toggle('opened');">
-			<h2 class="faq__question">What is Nox?</h2>
-			<p class="faq__answer">
-				Nox is a Django & React boilerplate that helps you build
-				production-ready web applications quickly.
-			</p>
-		</div>
 	</div>
 </section>
 

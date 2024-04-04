@@ -22,8 +22,8 @@
 }
 
 .hero__title {
-	font-size: 3.5rem;
-	font-weight: 600;
+	font-size: 5.5rem;
+	font-weight: 800;
 	margin-bottom: 40px;
 	max-width: 800px;
 	text-align: center;
@@ -59,8 +59,7 @@
 
 /* Section */
 .features,
-.pricing,
-.faq {
+.pricing {
 	max-width: 1200px;
 	margin: 0 auto;
 	position: relative;
@@ -179,51 +178,6 @@
 
 .plan .button {
 	margin-top: 20px;
-}
-
-/* FAQ */
-.faq__container {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-}
-
-.faq__title {
-	text-align: center;
-	margin-bottom: 15px;
-	font-size: 2.6rem;
-}
-
-.faq__description {
-	max-width: 600px;
-	text-align: center;
-	color: var(--color-subtext);
-	padding-bottom: 40px;
-	line-height: 1.6;
-}
-
-.faq__item {
-	background-color: var(--color-bg-secondary);
-	border: 2px solid var(--color-border);
-	border-radius: 7px;
-	max-height: 42px;
-	overflow: hidden;
-	cursor: pointer;
-	transition: max-height 0.1s ease-in-out;
-	max-width: 700px;
-}
-
-.faq__item.opened {
-	max-height: 300px;
-}
-
-.faq__question,
-.faq__answer {
-	padding: 15px;
-}
-
-.faq__answer {
-	padding-top: 0;
 }
 
 @media only screen and (max-width: 768px) {

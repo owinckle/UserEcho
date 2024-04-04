@@ -19,8 +19,12 @@ import useRequest from "../../hooks/useRequest";
 import { Routes, Route } from "react-router-dom";
 import FeatureRequests from "./FeatureRequests";
 
-const PrivateSpace = () => {
+const Space = () => {
 	const { loading, user, openProfile, logout } = useUser();
+	const [userRoles, setUserRoles] = useState({
+		isStaff: false,
+		role: "member",
+	});
 
 	const [space, setSpace] = useState(null);
 	const getSpace = () => {
@@ -28,6 +32,10 @@ const PrivateSpace = () => {
 			slug: window.location.hostname.split(".")[0],
 		}).then((data) => {
 			setSpace(data.space);
+			setUserRoles({
+				isStaff: data.roles.is_staff,
+				role: data.roles.role,
+			});
 		});
 	};
 
@@ -114,23 +122,26 @@ const PrivateSpace = () => {
 						target="/admin/changelog"
 					/>
 				</SidebarSection>
-				<SidebarSection name="Space" collapse>
-					<SidebarItem
-						icon={<IoMdPeople />}
-						label="Users"
-						target="/admin/users"
-					/>
-					<SidebarItem
-						icon={<GoOrganization />}
-						label="Collaborators"
-						target="/admin/collaborators"
-					/>
-					<SidebarItem
-						icon={<IoMdSettings />}
-						label="Settings"
-						target="/admin/settings"
-					/>
-				</SidebarSection>
+
+				{userRoles.isStaff && (
+					<SidebarSection name="Space" collapse>
+						<SidebarItem
+							icon={<IoMdPeople />}
+							label="Users"
+							target="/admin/users"
+						/>
+						<SidebarItem
+							icon={<GoOrganization />}
+							label="Collaborators"
+							target="/admin/collaborators"
+						/>
+						<SidebarItem
+							icon={<IoMdSettings />}
+							label="Settings"
+							target="/admin/settings"
+						/>
+					</SidebarSection>
+				)}
 			</Sidebar>
 
 			<Main>
@@ -145,4 +156,4 @@ const PrivateSpace = () => {
 	);
 };
 
-export default PrivateSpace;
+export default Space;

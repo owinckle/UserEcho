@@ -33,8 +33,10 @@ class GetSpace(APIView):
 
 			return Response({
 				"space": serializer.data,
-				"is_staff": is_staff,
-				"role": member.role
+				"roles": {
+					"is_staff": is_staff,
+					"role": member.role
+				}
 			})
 		except:
 			return Response({"error": "Space not found."}, status=404)

@@ -95,6 +95,40 @@ input {
 	}
 }
 
+textarea {
+	width: calc(100% - 20px - 4px);
+	padding: 7px 10px;
+	border-radius: v.$border-radius;
+	background-color: transparent;
+	border: 2px solid v.$color-border;
+	transition: border-color 0.3s ease-in-out;
+
+	&:focus {
+		outline: none;
+		border-color: v.$color-accent;
+	}
+}
+
+select {
+	width: 100%;
+	padding: 7px 10px;
+	border-radius: v.$border-radius;
+	background-color: transparent;
+	border: 2px solid v.$color-border;
+	transition: border-color 0.3s ease-in-out;
+	color: v.$color-text;
+
+	&:focus {
+		outline: none;
+		border-color: v.$color-accent;
+	}
+
+	option {
+		color: v.$color-text;
+		background-color: v.$color-bg-secondary;
+	}
+}
+
 // Additional global styles based on the palette
 .text-sub {
 	color: v.$color-subtext;
