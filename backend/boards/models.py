@@ -8,10 +8,10 @@ def generate_uuid():
 	return uuid4().hex[:5]
 
 
-class Labels(models.Model):
+class Label(models.Model):
 	id = models.CharField(max_length=8, primary_key=True, default=generate_uuid, editable=False)
 	space = models.ForeignKey(Space, on_delete=models.CASCADE)
-	label = models.CharField(max_length=100)
+	name = models.CharField(max_length=100)
 	color = models.CharField(max_length=7, default="#776bdc")
 	
 	class Meta:
@@ -44,7 +44,7 @@ class Post(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	title = models.CharField(max_length=255)
 	content = models.TextField()
-	labels = models.ManyToManyField(Labels, blank=True)
+	labels = models.ManyToManyField(Label, blank=True)
 	created_at = models.DateTimeField(auto_now_add=True)
 	
 

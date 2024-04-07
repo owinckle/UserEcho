@@ -3,7 +3,6 @@ import { Main, Shell } from "../../components/Layout";
 import {
 	IoMdBug,
 	IoMdBulb,
-	IoMdEye,
 	IoMdHeart,
 	IoMdMap,
 	IoMdPeople,
@@ -14,44 +13,14 @@ import { GoOrganization } from "react-icons/go";
 import { Header, HeaderRight, HeaderTitle } from "../../components/Header";
 import { DropdownLink, ProfileBox } from "../../components/ProfileBox";
 import useUser from "../../hooks/useUser";
-import { useEffect, useState } from "react";
-import useRequest from "../../hooks/useRequest";
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import FeatureRequests from "./FeatureRequests";
+import SpaceContext from "../../contexts/SpaceContext";
 
 const Space = () => {
-	const { loading, user, openProfile, logout } = useUser();
-	const [userRoles, setUserRoles] = useState({
-		isStaff: false,
-		role: "member",
-	});
-
-	const [space, setSpace] = useState(null);
-	const getSpace = () => {
-		useRequest("POST", "/space/get/", {
-			slug: window.location.hostname.split(".")[0],
-		}).then((data) => {
-			setSpace(data.space);
-			setUserRoles({
-				isStaff: data.roles.is_staff,
-				role: data.roles.role,
-			});
-		});
-	};
-
-	useEffect(() => {
-		if (!loading && !user) {
-			window.location.href = `${window.location.protocol}//${
-				import.meta.env.VITE_APP_DOMAIN
-			}/login`;
-		} else {
-			getSpace();
-		}
-	}, [loading, user]);
-
-	if (loading || !user) {
-		return <div>Loading...</div>;
-	}
+	const { user, openProfile, logout } = useUser();
+	const { space, member } = useContext(SpaceContext);
 
 	return (
 		<Shell withHeader>
@@ -90,11 +59,6 @@ const Space = () => {
 					label="Dashboard"
 					target="/admin"
 				/>
-				<SidebarItem
-					icon={<IoMdEye />}
-					label="Public View"
-					target="/"
-				/>
 				<SidebarSection name="Modules" collapse>
 					<SidebarItem
 						icon={<IoMdBulb />}
@@ -123,7 +87,7 @@ const Space = () => {
 					/>
 				</SidebarSection>
 
-				{userRoles.isStaff && (
+				{member.isStaff && (
 					<SidebarSection name="Space" collapse>
 						<SidebarItem
 							icon={<IoMdPeople />}

@@ -1,6 +1,7 @@
 import Landing from "./views/landing";
 import App from "./views/app";
 import Space from "./views/space";
+import { SpaceProvider } from "./contexts/SpaceContext";
 
 const Dispatcher = () => {
 	const host = window.location.hostname;
@@ -11,7 +12,11 @@ const Dispatcher = () => {
 		if (parts[0] == "app") {
 			return <App />;
 		} else {
-			return <Space />;
+			return (
+				<SpaceProvider>
+					<Space />
+				</SpaceProvider>
+			);
 		}
 	}
 };

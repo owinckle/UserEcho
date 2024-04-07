@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { BoardList } from "../../components/Boards";
 import { MainTitle } from "../../components/Layout";
 import useRequest from "../../hooks/useRequest";
-import Post from "../../components/Post";
+import { PostCreate, PostView } from "../../components/Post";
 
 const FeatureRequests = () => {
 	const [posts, setPosts] = useState([]);
 	const [post, setPost] = useState(null);
+	const [createPostModal, setCreatePostModal] = useState(false);
 
 	const getBoard = async () => {
 		useRequest("POST", "/board/feature-requests/get/", {
@@ -24,9 +25,21 @@ const FeatureRequests = () => {
 		<>
 			<MainTitle>Feature Requests</MainTitle>
 
-			<BoardList posts={posts} viewPost={setPost} />
+			<BoardList
+				posts={posts}
+				viewPost={setPost}
+				createPost={() => setCreatePostModal(true)}
+			/>
 
-			{post && <Post post={post} onClose={() => setPost(null)} />}
+			{post && <PostView post={post} onClose={() => setPost(null)} />}
+
+			{createPostModal && (
+				<PostCreate
+					getBoard={getBoard}
+					boardType="feature_requests"
+					onClose={() => setCreatePostModal(false)}
+				/>
+			)}
 		</>
 	);
 };

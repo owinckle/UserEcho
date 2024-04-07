@@ -93,6 +93,21 @@
 				margin-bottom: 5px;
 			}
 
+			&__labels {
+				display: flex;
+				gap: 10px;
+				margin-bottom: 10px;
+
+				&__label {
+					background-color: v.$color-accent;
+					padding: 5px 10px;
+					border-radius: v.$border-radius;
+					font-size: 0.8rem;
+					border: 2px solid v.$color-accent;
+					font-weight: 500;
+				}
+			}
+
 			&__footer {
 				display: flex;
 				align-items: center;
@@ -119,10 +134,19 @@
 	}
 }
 
-.board-filter {
+.board-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	margin-bottom: 15px;
 
-	&__search {
-		max-width: 300px;
+	&__filter {
+		&__search {
+			max-width: 300px;
+		}
+	}
+
+	&__new-post {
+		width: fit-content;
 	}
 }

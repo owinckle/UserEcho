@@ -64,6 +64,9 @@ export const UserProvider = ({ children }) => {
 			});
 		}
 		setUser(null);
+		window.location.href = `${window.location.protocol}//${
+			import.meta.env.VITE_APP_DOMAIN
+		}/login`;
 	};
 
 	const register = async (name, email, password) => {

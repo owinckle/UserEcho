@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Board, Labels, Post, PostComment
+from .models import Board, Label, Post, PostComment
 
 
 admin.site.register(Board)
-admin.site.register(Labels)
+admin.site.register(Label)
 admin.site.register(Post)
 admin.site.register(PostComment)

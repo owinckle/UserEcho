@@ -3,22 +3,30 @@ import { MdOutlineModeComment } from "react-icons/md";
 import { IoChevronDownOutline, IoChevronUpOutline } from "react-icons/io5";
 import Button from "../../components/Button";
 
-export const BoardList = ({ posts, viewPost }) => {
+export const BoardList = ({ posts, viewPost, createPost }) => {
 	return (
 		<>
-			<div className="board-filter">
-				<input
-					type="text"
-					className="board-filter__search"
-					placeholder="Search..."
-				/>
+			<div className="board-controls">
+				<div className="board-controls__filter">
+					<input
+						type="text"
+						className="board-controls__filter__search"
+						placeholder="Search..."
+					/>
+				</div>
+				<Button
+					className="board-controls__new-post"
+					onClick={createPost}
+				>
+					New Post
+				</Button>
 			</div>
 
 			<div className="board-list">
 				{posts.length === 0 && (
 					<div className="board-list__empty">
 						No one has posted yet. Be the first!
-						<Button>New Post</Button>
+						<Button onClick={createPost}>New Post</Button>
 					</div>
 				)}
 
@@ -49,6 +57,17 @@ export const BoardList = ({ posts, viewPost }) => {
 							<p className="board-list__post__content__description">
 								{post.content}
 							</p>
+							<div className="board-list__post__content__labels">
+								{post.labels.map((label, key) => (
+									<div
+										key={key}
+										className="board-list__post__content__labels__label"
+									>
+										{label.name}
+									</div>
+								))}
+							</div>
+
 							<div className="board-list__post__content__footer">
 								<div className="board-list__post__content__footer__date">
 									{post.posted_since}

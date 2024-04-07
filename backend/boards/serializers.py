@@ -1,8 +1,13 @@
 from rest_framework import serializers
 from django.contrib.humanize.templatetags.humanize import naturaltime
-from .models import Post, PostComment
+from .models import Post, PostComment, Label
 from users.serializers import UserSerializer
-from users.models import Profile
+
+
+class LabelSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Label
+		fields = ("id", "name", "color")
 
 
 class PostCommentSerializer(serializers.ModelSerializer):
@@ -25,6 +30,7 @@ class PostSerializer(serializers.ModelSerializer):
 	posted_since = serializers.SerializerMethodField()
 	author = serializers.SerializerMethodField()
 	comments = serializers.SerializerMethodField()
+	labels = LabelSerializer(read_only=True, many=True)
 
 	class Meta:
 		model = Post

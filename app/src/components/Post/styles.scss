@@ -8,6 +8,12 @@
 	background-color: rgba(0, 0, 0, 0.5);
 	top: 0;
 	left: 0;
+	animation: fadeIn 0.2s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
+
+	&.closing {
+		opacity: 0;
+	}
 }
 
 .post {
@@ -18,10 +24,16 @@
 	background-color: v.$color-bg-secondary;
 	padding: 25px;
 	border-radius: v.$border-radius;
-	max-width: 1200px;
+	max-width: 1000px;
 	width: 100%;
 	z-index: 99999;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	animation: fadeIn 0.2s ease-in-out;
+	transition: opacity 0.2s ease-in-out;
+
+	&.closing {
+		opacity: 0;
+	}
 
 	&__header {
 		display: flex;
@@ -133,16 +145,101 @@
 				align-items: center;
 				gap: 50px;
 				display: grid;
-				grid-template-columns: 1fr 6fr;
-
+				grid-template-columns: 1fr auto;
 				&__label {
 					color: v.$color-subtext;
 				}
+			}
+		}
+	}
 
-				&__value {
-					width: 100%;
+	&.post-create {
+		max-width: 600px;
+
+		.post__header {
+			&__title {
+				font-size: 1.1rem;
+				font-weight: 500;
+			}
+		}
+
+		.post__body {
+			display: block;
+
+			.post-create__labels {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				align-items: center;
+
+				&__label {
+					background-color: v.$color-accent;
+					padding: 5px 10px;
+					border-radius: v.$border-radius;
+					font-size: 0.8rem;
+					border: 2px solid v.$color-accent;
+					font-weight: 500;
+
+					&.new {
+						background-color: transparent;
+						border: 2px dotted v.$color-border;
+						transition: border-color 0.2s ease-in-out;
+						cursor: pointer;
+						position: relative;
+
+						&:hover {
+							border-color: v.$color-accent;
+						}
+
+						.post-create__labels__label__dropdown {
+							position: absolute;
+							top: calc(100% + 10px);
+							background-color: v.$color-bg-secondary;
+							box-shadow: 0 12px 10px rgba(0, 0, 0, 0.3);
+							border-radius: v.$border-radius;
+							left: 0;
+							z-index: 9999;
+							min-width: 100px;
+							width: 100%;
+							display: flex;
+							flex-direction: column;
+							transition: height 0.2s ease-in-out;
+							overflow: hidden;
+
+							&__item {
+								cursor: pointer;
+								transition: background-color 0.2s ease-in-out,
+									color 0.2s ease-in-out;
+								font-size: 0.8rem;
+								font-weight: 500;
+								padding: 10px;
+
+								&.active {
+									color: v.$color-accent;
+									background-color: rgba(119, 107, 220, 0.1);
+								}
+
+								&:hover {
+									background-color: lighten(
+										v.$color-bg-secondary,
+										10%
+									);
+								}
+							}
+						}
+					}
 				}
 			}
 		}
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
 	}
 }

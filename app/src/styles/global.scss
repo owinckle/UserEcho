@@ -102,6 +102,7 @@ textarea {
 	background-color: transparent;
 	border: 2px solid v.$color-border;
 	transition: border-color 0.3s ease-in-out;
+	resize: vertical;
 
 	&:focus {
 		outline: none;
@@ -213,4 +214,9 @@ select {
 .toast-danger {
 	// background-color: v.$color-danger;
 	background-color: yellow;
+}
+
+.Toastify {
+	position: relative;
+	z-index: 9999999;
 }

@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Space, SpaceMember
 from users.models import Profile
 from .serializers import SpaceSerializer
-from boards.models import Board, Labels
+from boards.models import Board, Label
 
 
 class GetSpaces(APIView):
