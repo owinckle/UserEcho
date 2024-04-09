@@ -14,6 +14,15 @@ const FeatureRequests = () => {
 			space_slug: window.location.hostname.split(".")[0],
 		}).then((data) => {
 			setPosts(data);
+
+			if (post) {
+				const newPost = data.find((p) => p.id === post.id);
+				if (!newPost) {
+					setPost(null);
+				} else {
+					setPost(newPost);
+				}
+			}
 		});
 	};
 
@@ -28,10 +37,17 @@ const FeatureRequests = () => {
 			<BoardList
 				posts={posts}
 				viewPost={setPost}
+				getBoard={getBoard}
 				createPost={() => setCreatePostModal(true)}
 			/>
 
-			{post && <PostView post={post} onClose={() => setPost(null)} />}
+			{post && (
+				<PostView
+					post={post}
+					getBoard={getBoard}
+					onClose={() => setPost(null)}
+				/>
+			)}
 
 			{createPostModal && (
 				<PostCreate

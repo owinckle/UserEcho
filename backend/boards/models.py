@@ -54,3 +54,11 @@ class PostComment(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	content = models.TextField()
 	created_at = models.DateTimeField(auto_now_add=True)
+
+
+class Vote(models.Model):
+	id = models.CharField(max_length=8, primary_key=True, default=generate_uuid, editable=False)
+	voter = models.ForeignKey(User, on_delete=models.CASCADE)
+	post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
+	comment = models.ForeignKey(PostComment, on_delete=models.CASCADE, null=True, blank=True)
+	value = models.IntegerField(default=0)

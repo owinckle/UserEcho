@@ -118,8 +118,10 @@ select {
 	border: 2px solid v.$color-border;
 	transition: border-color 0.3s ease-in-out;
 	color: v.$color-text;
+	cursor: pointer;
 
-	&:focus {
+	&:focus,
+	&:hover {
 		outline: none;
 		border-color: v.$color-accent;
 	}
@@ -127,6 +129,8 @@ select {
 	option {
 		color: v.$color-text;
 		background-color: v.$color-bg-secondary;
+		font-family: "Inter", sans-serif;
+		letter-spacing: 1px;
 	}
 }
 

@@ -100,6 +100,11 @@
 				flex-direction: column;
 				gap: 15px;
 
+				.post__body__content__comments-container {
+					height: 400px;
+					overflow-y: auto;
+				}
+
 				&__title {
 					font-size: 1.2rem;
 					font-weight: 600;
@@ -108,13 +113,24 @@
 
 				&__comment {
 					display: flex;
-					gap: 15px;
+					gap: 5px;
+					flex-direction: column;
+					cursor: pointer;
+					padding: 10px;
+					transition: background-color 0.2s ease-in-out;
+					border-radius: v.$border-radius;
+
+					&:hover {
+						background-color: lighten(v.$color-bg-secondary, 5%);
+
+						.post__body__content__comments__comment__meta__delete {
+							opacity: 1;
+						}
+					}
 
 					&__content {
 						width: 100%;
-						background-color: v.$color-bg-primary;
-						padding: 10px;
-						border-radius: v.$border-radius;
+						color: v.$color-subtext;
 					}
 
 					&__meta {
@@ -128,6 +144,11 @@
 
 						&__date {
 							color: v.$color-subtext;
+						}
+
+						&__delete {
+							opacity: 0;
+							transition: opacity 0.2s ease-in-out;
 						}
 					}
 				}
@@ -146,8 +167,26 @@
 				gap: 50px;
 				display: grid;
 				grid-template-columns: 1fr auto;
+
+				&:last-child {
+					border-top: 1px solid v.$color-border;
+					padding-top: 15px;
+				}
+
 				&__label {
 					color: v.$color-subtext;
+				}
+
+				&__value {
+					height: 24px;
+					display: flex;
+					align-items: center;
+
+					select {
+						padding-top: 0;
+						padding-bottom: 0;
+						height: 100%;
+					}
 				}
 			}
 		}

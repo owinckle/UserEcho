@@ -54,6 +54,10 @@
 				cursor: pointer;
 				transition: color 0.2s ease-in-out;
 
+				&.active {
+					color: v.$color-accent;
+				}
+
 				&:hover {
 					color: v.$color-accent;
 				}
@@ -142,7 +146,7 @@
 
 	&__filter {
 		&__search {
-			max-width: 300px;
+			width: 250px;
 		}
 	}
 

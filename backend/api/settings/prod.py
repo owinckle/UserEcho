@@ -4,6 +4,7 @@ import os
 DEBUG = False
 ALLOWED_HOSTS = [
 	"userecho.onrender.com",
+	"userecho.io"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True

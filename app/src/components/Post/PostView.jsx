@@ -1,9 +1,11 @@
+import "./styles.scss";
 import { useState } from "react";
 import Button from "../Button";
-import "./styles.scss";
 import { IoCloseOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
+import useRequest from "../../hooks/useRequest";
 
-const PostView = ({ post, onClose }) => {
+const PostView = ({ post, getBoard, onClose }) => {
 	const [closing, setClosing] = useState(false);
 
 	const closeHandler = (e) => {
@@ -11,6 +13,49 @@ const PostView = ({ post, onClose }) => {
 		setTimeout(() => {
 			onClose();
 		}, 200);
+	};
+
+	const deletePost = () => {
+		useRequest("POST", "/post/delete/", {
+			post_id: post.id,
+		})
+			.then(() => {
+				getBoard();
+				closeHandler();
+				toast.success("Post deleted successfully");
+			})
+			.catch(() => {
+				toast.error("An error occurred while deleting the post");
+			});
+	};
+
+	const deleteComment = (comment_id) => {
+		useRequest("POST", "/post/comment/delete/", {
+			comment_id,
+		})
+			.then(() => {
+				getBoard();
+				toast.success("Comment deleted successfully");
+			})
+			.catch(() => {
+				toast.error("An error occurred while deleting the comment");
+			});
+	};
+
+	const [commentContent, setCommentContent] = useState("");
+	const createComment = () => {
+		useRequest("POST", "/post/comment/create/", {
+			post_id: post.id,
+			content: commentContent,
+		})
+			.then(() => {
+				getBoard();
+				setCommentContent("");
+				toast.success("Comment created successfully");
+			})
+			.catch(() => {
+				toast.error("An error occurred while creating the comment");
+			});
 	};
 
 	return (
@@ -48,29 +93,49 @@ const PostView = ({ post, onClose }) => {
 							className="post__body__content__comment"
 							rows="5"
 							placeholder="Leave a comment..."
+							value={commentContent}
+							onChange={(e) => setCommentContent(e.target.value)}
 						></textarea>
-						<Button className="post__body__content__submit-comment">
+						<Button
+							className="post__body__content__submit-comment"
+							onClick={createComment}
+						>
 							Submit
 						</Button>
 
 						<div className="post__body__content__comments">
 							<div className="post__body__content__comments__title">
-								Comments
+								Comments ({post.comments.length})
 							</div>
 
-							{post.comments.map((comment, key) => (
-								<div
-									key={key}
-									className="post__body__content__comments__comment"
-								>
-									<div className="post__body__content__comments__comment__author">
-										{comment.author.name}
+							<div className="post__body__content__comments-container">
+								{post.comments.map((comment, key) => (
+									<div
+										key={key}
+										className="post__body__content__comments__comment"
+									>
+										<div className="post__body__content__comments__comment__author">
+											{comment.author.name}
+										</div>
+										<div className="post__body__content__comments__comment__content">
+											{comment.content}
+										</div>
+										<div className="post__body__content__comments__comment__meta">
+											<div className="post__body__content__comments__comment__meta__date">
+												{comment.posted_since}
+											</div>
+											<div
+												className="post__body__content__comments__comment__meta__delete danger hover"
+												onClick={() =>
+													deleteComment(comment.id)
+												}
+											>
+												Delete
+											</div>
+										</div>
 									</div>
-									<div className="post__body__content__comments__comment__content">
-										{comment.content}
-									</div>
-								</div>
-							))}
+								))}
+							</div>
 						</div>
 					</div>
 					<div className="post__body__meta">
@@ -99,7 +164,16 @@ const PostView = ({ post, onClose }) => {
 								Created
 							</div>
 							<div className="post__body__meta__item__value">
-								{post.posted_since}
+								{post.creation_date}
+							</div>
+						</div>
+
+						<div className="post__body__meta__item">
+							<div
+								className="post__body__meta__item__value danger hover"
+								onClick={deletePost}
+							>
+								Delete post
 							</div>
 						</div>
 					</div>
